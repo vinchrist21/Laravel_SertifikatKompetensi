@@ -17,7 +17,7 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        //
+        //menampilkan data-data yang ada di tabel "borrows"
         $users = User::all();
         $books = Book::all();
         $borrows = Borrow::all();
@@ -32,10 +32,11 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        //
+        //menampilkan dropdown user dan buku dari tabel lain
         $users = User::all();
         $books = Book::all();
 
+        //Carbon = library untuk mengambil tanggal secara online
         $borrow_date = Carbon::now()->format('Y-m-d');
         $return_date = Carbon::now()->addDays(7)->format('Y-m-d');
 
@@ -50,7 +51,7 @@ class BorrowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //melakukan pemasukan data ke database
         $input = $request->all();
         Borrow::create($input);
         return redirect('admin/borrow')->with('flash_message', 'Success!');
@@ -75,13 +76,7 @@ class BorrowController extends Controller
      */
     public function edit(Borrow $borrow)
     {
-        //
-        $users = User::pluck('email', 'id');
-        $books = Book::pluck('title', 'id');
 
-        $borrow->load('users', 'books');
-
-        return view('admin/borrow/borrowedit', compact('borrow', 'users', 'books'));
     }
 
     /**
@@ -91,12 +86,14 @@ class BorrowController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Borrow $borrow)
+    public function update(Request $request, $id)
     {
-        //
-        $borrow->update($request->validated());
+        //melakukan update pergantian status
+        $borrow = Borrow::find($id);
+        $input = $request->all();
+        $borrow->update($input);
 
-        return redirect()->route('admin/borrow/borrowindex');
+        return redirect('admin/borrow');
     }
 
     /**

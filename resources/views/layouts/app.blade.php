@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color: #CBEDD5">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,9 +30,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm" style="background-color: #439A97">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/admin/adminview') }}">
                     PerpustakaanKita
 {{--                    {{ config('app.name', 'Laravel') }}--}}
                 </a>
@@ -85,7 +85,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4"  style="background-color: #CBEDD5">
             @yield('content')
         </main>
     </div>

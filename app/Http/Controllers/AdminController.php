@@ -24,12 +24,14 @@ class AdminController extends Controller
      */
     public function index()
     {
+        //menampilkan data book di halaman adminview
         $books = Book::all();
         return view('admin/adminview')->with('books', $books);
     }
 
     public function create()
     {
+        //pindah ke halaman adminadd
         return view('admin.adminadd');
     }
 

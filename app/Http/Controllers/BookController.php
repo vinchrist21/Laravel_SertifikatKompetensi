@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        //menampilkan halaman adminadd
         return view('admin/adminadd');
     }
 
@@ -36,7 +36,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //menambahkan inputan buku baru di lalu pindah halaman ke adminview
         $input = $request->all();
         Book::create($input);
         return redirect('admin/adminview')->with('flash_message', 'Success!');
@@ -61,7 +61,7 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        //mengambil id buku dan pindah ke halaman adminedit
         $books = Book::find($id);
         return view('admin/adminedit')->with('books', $books);
     }
@@ -75,7 +75,7 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //ambil id buku lalu update buku tersebut dan pindah ke halaman adminview
         $books = Book::find($id);
         $input = $request->all();
         $books->update($input);

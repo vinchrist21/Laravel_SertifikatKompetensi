@@ -3,19 +3,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-{{--                <a--}}
-{{--                    --}}{{--                            href="{{ url('/admin/create') }}" --}}
-{{--                    class="btn btn-info btn-sm" title="Add New Book Catalog">--}}
-{{--                    <i class="fa fa-folder" aria-hidden="true"></i> Data Peminjam Buku--}}
-{{--                </a>--}}
-{{--                <a--}}
-{{--                    --}}{{--                            href="{{ url('/admin/create') }}" --}}
-{{--                    class="btn btn-info btn-sm" title="Add New Book Catalog">--}}
-{{--                    <i class="fa fa-plus" aria-hidden="true"></i> Input Peminjaman Buku--}}
-{{--                </a>--}}
-{{--                <div class="card" style="margin-top: 15px">--}}
-{{--                    <div class="card-header">Book Catalog</div>--}}
-
                     <div class="card-body">
                         <br/>
                         <br/>
@@ -59,14 +46,18 @@
                                                 Pinjaman sedang berjalan
                                             @endif
                                         </td>
-{{--                                        <td>--}}
-{{--                                            <a href="{{ route('borrow.edit') }}" title="Edit Book"><button class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>--}}
-{{--                                            <form method="POST" action="{{ route('borrow.destroy') }}" accept-charset="UTF-8" style="display:inline">--}}
-{{--                                                {{ method_field('DELETE') }}--}}
-{{--                                                {{ csrf_field() }}--}}
-{{--                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Book" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>--}}
-{{--                                            </form>--}}
-{{--                                        </td>--}}
+                                        <td>
+                                            {{--jika status == 1, tampilkan tombol action--}}
+                                            @if($borrow->status ==1)
+                                                {{--memanggil function yg ada di web.php agar yg semula valuenya 1 menjadi 0--}}
+                                                <form method="POST" action="{{ url('/admin/borrow/borrowindex/'.$borrow->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                    {{ method_field('Patch') }}
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="status" id="status" class="form-input rounded-md shadow-sm mt-1 block w-full" value= 0 />
+                                                    <button type="submit" class="btn btn-success btn-sm" title="Delete Book" onclick="return confirm(&quot;Confirm edit?&quot;)">Finish</button>
+                                                </form>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

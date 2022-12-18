@@ -24,17 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //menampilkan data book di halaman user
         $books = Book::all();
         return view('home', compact('books'));
     }
 
-//    public function search(Request $request)
-//    {
-//        if($request->has('search')){
-//            $books = Book::where('title','%'.$request->search.'%')->get();
-//        } else {
-//            $books = Book::all();
-//        }
-//        return view('home',['title'=>$books]);
-//    }
 }
